@@ -1,41 +1,45 @@
 /* ******************** Workshop 1 -- Assignement2 **************************/
 #include <stdio.h> // standard C definitions
-#include <stdbool.h> 
+#include <stdbool.h> // standard C bool 
 #include "MCB2300 evaluationboard.h" // hardware related functions
 
-/*** globals ***/
+/*** Globals ***/
 // global var
 extern bool testBool; 
 
-void resetState() {
+/*** Reset State ***/
+void reset() {
 	// reset timers
 	// print 00:00:00:00
 }
 
-void runningState() {
+/*** Runnging State ***/
+void running() {
 	// timers running
 	// print time
 }
 
-void stopState() {
+/*** Stop State ***/
+void stop() {
 	// show time
-	// 
 }
 
+/*** Print lap time ***/
 void printLap() {
 	// print lap 
 }
 
 /*** Main code ***/
 int main(void) {
-	// init the hardware and interrupts
-        // here we should write the code for the stopwacht
-        // yet another comment
-	initEvaluationBoard();
-	init_EINT0(); 
-	init_T1();
-	if (testBool) 
-		LEDS = 0x00;
-	else 
-		LEDS = 0xFF;
+	initEvaluationBoard();	// init the hardware
+	initEINT0();	// init the button interrupt
+	init_T1();	// init timer1 interrupt
+
+	// extern var code test
+	while (1) {
+		if (testBool)			
+			LEDS = 0x00;
+		else 
+			LEDS = 0xFF;
+	}
 }
