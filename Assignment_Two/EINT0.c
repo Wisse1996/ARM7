@@ -2,9 +2,7 @@
  
 /************* Interrupt service routine for EINT0 ****************************/ 
 __irq void EINT0_ISR(void) {          // interrupt service routine 
-	/************************************************/ 
-	// Place here your own code 
-	/************************************************/ 
+	
 	EXTINT |= 0x01;                     // clears EINT0 interrupt flag 
 	VICVectAddr = 0;                    // Update interrupt priority hardware 
 }; 

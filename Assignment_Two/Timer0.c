@@ -2,24 +2,23 @@
 #include <stdbool.h> 
 
 /*** global ***/
-bool testBool;
+bool t0;
 
-/************** interrupt service routine timer1 ******************/ 
-__irq void T1_ISR (void) { 
-	testBool = !testBool;
-	/************************************************/ 
-	// Place here your own code 
-	/************************************************/ 
-	T1IR        = 1;           // Clear interrupt flag 
+/************** interrupt service routine timer0 ******************/ 
+__irq void T0_ISR (void) { 
+	t0 = !t0;
+
+	// interrupt code
+	T0IR        = 1;           // Clear interrupt flag 
 	VICVectAddr = 0;           // Update interrupt priority hardware 
 } 
  
-/********************  initializing timer1 ************************/ 
-void init_T1(void) { 
-	T1MR0         = 11999999;            // 12Mcylces - 1 
-	T1MCR         = 3;                   // Enable interrupt, reset on match register 0 
-	T1TCR         = 1;                     // Enable timer1 
-	VICVectAddr5  = (unsigned long)T1_ISR; // Set interrupt vector 
-	VICVectPriority5 = 10;                 // Set to priority 10 (arbitrary value) 
-	VICIntEnable  = (1 << 5);              // Enable Ttimer1 Interrupt 
+/********************  initializing timer0 ************************/ 
+void init_T0(void) { 
+	T0MR0         = 100000;            // 12Mcylces - 1 
+	T0MCR         = 3;                   // Enable interrupt, reset on match register 0 
+	T0TCR         = 1;                     // Enable timer0
+	VICVectAddr4  = (unsigned long)T0_ISR; // Set interrupt vector 
+	VICVectPriority4 = 9;                 // Set to priority 10 (arbitrary value) 
+	VICIntEnable  = (1 << 4);              // Enable Ttimer0 Interrupt 
 } 

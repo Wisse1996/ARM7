@@ -9,8 +9,10 @@
 #define BUZZER FIO0PIN3 // P0.26 is in 0
 
 void initEvaluationBoard(void); // function prototype
-
+void init_T0(void);
 void init_T1(void);
+void init_T2(void);
+void init_T3(void);
 void initEINT0(void);
 
 #endif
