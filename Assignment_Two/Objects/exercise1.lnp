@@ -3,6 +3,8 @@
 ".\objects\mcb2300 evaluationboard.o"
 ".\objects\lcd_4bit.o"
 ".\objects\assignement2.o"
+".\objects\eint0.o"
+".\objects\timer0.o"
 --strict --scatter ".\Objects\exercise1.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

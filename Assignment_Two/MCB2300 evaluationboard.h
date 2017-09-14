@@ -11,8 +11,6 @@
 void initEvaluationBoard(void); // function prototype
 
 void init_T1(void);
-
-void playMorseCode(int time);
-
+void init_EINT0(void);
 
 #endif

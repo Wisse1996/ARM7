@@ -439,6 +439,16 @@
               <FileType>1</FileType>
               <FilePath>.\assignement2.c</FilePath>
             </File>
+            <File>
+              <FileName>EINT0.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\EINT0.c</FilePath>
+            </File>
+            <File>
+              <FileName>Timer0.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Timer0.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
