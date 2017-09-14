@@ -435,9 +435,9 @@
               <FilePath>.\LCD_4bit.c</FilePath>
             </File>
             <File>
-              <FileName>assignement1.c</FileName>
+              <FileName>assignement2.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\assignement1.c</FilePath>
+              <FilePath>.\assignement2.c</FilePath>
             </File>
           </Files>
         </Group>
