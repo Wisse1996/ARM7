@@ -2,11 +2,12 @@
 #include <stdbool.h> // bool C99
 
 /*** global ***/
-bool t1;
+int t1;
 
 /************** interrupt service routine timer1 ******************/ 
 __irq void T1_ISR (void) { 
-	t1 = !t1;
+	// t1 = !t1;
+	t1++;
 
 	// interrupt code
 	T1IR        = 1;	// Clear interrupt flag 
@@ -15,7 +16,7 @@ __irq void T1_ISR (void) {
  
 /********************  initializing timer1 ************************/ 
 void init_T1(void) { 
-	T1MR0 = 60000;
+	T1MR0 = 1000000;
 	T1MCR = 3;	// Enable interrupt, reset on match register 0 
 	T1TCR = 1;	// Enable timer1 
 	VICVectAddr5 = (unsigned long)T1_ISR;	// Set interrupt vector 

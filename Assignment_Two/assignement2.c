@@ -4,7 +4,7 @@
 #include "MCB2300 evaluationboard.h"	// hardware related functions
 
 /*** Globals ***/
-extern bool t0,t1,t2,t3;
+extern int t0,t1,t2,t3;
 
 /*** Reset State ***/
 void reset() {
@@ -37,11 +37,17 @@ int main(void) {
 	init_T2();	// init timer2 interrupt
 	init_T3();	// init timer3 interrupt
 
+	char textFirst[17]; // declaration of array of 17 characters
+	char textSecond[17]; // declaration of array of 17 characters
+
 	// extern var code test
 	while (1) {
-		if (t0)			
-			LEDS = 0x00;
-		else 
-			LEDS = 0xFF;
+		sprintf(textFirst,"t0: %d t1: %d", t0, t1); // buf is filled
+		set_cursor(0, 0); // cursor position is moved to the upper line
+		lcd_print(textFirst); // the text is written to the Lcd-module
+
+		sprintf(textSecond,"t2: %d t3: %d", t2, t3); // buf is filled
+		set_cursor(0, 1); // cursor position is moved to the lower line
+		lcd_print(textSecond); // the text is written to the Lcd-module
 	}
 }
