@@ -10,5 +10,6 @@
 int main(void) {
 	// init the hardware and interrupts
         // here we should write the code for the stopwacht
+        // yet another comment
 	initEvaluationBoard();
 }
