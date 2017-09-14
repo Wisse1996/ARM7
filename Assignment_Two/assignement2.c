@@ -1,10 +1,9 @@
 /* ******************** Workshop 1 -- Assignement2 **************************/
-#include <stdio.h> // standard C definitions
-#include <stdbool.h> // standard C bool 
-#include "MCB2300 evaluationboard.h" // hardware related functions
+#include <stdio.h>	// standard C definitions
+#include <stdbool.h>	// bool C99
+#include "MCB2300 evaluationboard.h"	// hardware related functions
 
 /*** Globals ***/
-// global var
 extern bool t0,t1,t2,t3;
 
 /*** Reset State ***/
