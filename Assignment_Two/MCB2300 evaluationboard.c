@@ -6,6 +6,7 @@ void initEvaluationBoard(void) {
 	PINMODE4 = 0x0020AAAA; // LEDS
 	SCS = 1; // enable fast GPIO
 	LEDS = 0x00; // on reset all leds are off
+	BUZZER = 0x00; // BUZZER off at start
 
 	// make sure all 4 timers are activited at power on -> datasheet
 	PCONP |= (1 << 1);

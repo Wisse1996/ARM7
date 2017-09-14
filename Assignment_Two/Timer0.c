@@ -6,6 +6,7 @@ int t0;
 
 /************** interrupt service routine timer0 ******************/ 
 __irq void T0_ISR (void) { 
+	// program code
 	// t0 = !t0;
 	t0++;
 

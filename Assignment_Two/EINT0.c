@@ -1,7 +1,13 @@
 #include "MCB2300 evaluationboard.h"  // hardware related functions 
  
 /************* Interrupt service routine for EINT0 ****************************/ 
-__irq void EINT0_ISR(void) {	// interrupt service routine 
+__irq void EINT0_ISR(void) {	// interrupt service routine
+
+	// toggle all timers when the button is pressed
+	T0TCR = !T0TCR;	// Enable timer0
+	T1TCR = !T1TCR;	// Enable timer1
+	T2TCR = !T2TCR;	// Enable timer2
+	T3TCR = !T3TCR;	// Enable timer3
 	
 	EXTINT |= 0x01;	// clears EINT0 interrupt flag 
 	VICVectAddr = 0;	// Update interrupt priority hardware 

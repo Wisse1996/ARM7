@@ -40,12 +40,14 @@ int main(void) {
 	char textFirst[17]; // declaration of array of 17 characters
 	char textSecond[17]; // declaration of array of 17 characters
 
-	// extern var code test
+	// loop indefinitely
 	while (1) {
+		// print timer0 and timer1 on the first line of the lcd
 		sprintf(textFirst,"t0: %d t1: %d", t0, t1); // buf is filled
 		set_cursor(0, 0); // cursor position is moved to the upper line
 		lcd_print(textFirst); // the text is written to the Lcd-module
 
+		// print timer2 and timer3 on the second line of the lcd
 		sprintf(textSecond,"t2: %d t3: %d", t2, t3); // buf is filled
 		set_cursor(0, 1); // cursor position is moved to the lower line
 		lcd_print(textSecond); // the text is written to the Lcd-module

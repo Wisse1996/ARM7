@@ -6,6 +6,7 @@ int t3;
 
 /************** interrupt service routine timer3 ******************/ 
 __irq void T3_ISR (void) { 
+	// program code
 	// t3 = !t3;
 	t3++;
 
@@ -16,7 +17,7 @@ __irq void T3_ISR (void) {
  
 /********************  initializing timer3 ************************/ 
 void init_T3(void) { 
-	T3MR0 = 2000000;
+	T3MR0 = 4000000;
 	T3MCR = 3;	// Enable interrupt, reset on match register 0 
 	T3TCR = 1;	// Enable timer3
 	VICVectAddr27 = (unsigned long)T3_ISR;	// Set interrupt vector 

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\exercise1.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\exercise1.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Thu Sep 14 23:00:16 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Thu Sep 14 23:17:09 2017
 <BR><P>
 <H3>Maximum Stack Usage =        160 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -309,7 +309,7 @@ Global Symbols
 
 <P><STRONG><a name="[6c]"></a>__use_no_semihosting_swi</STRONG> (ARM, 4 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[d]"></a>EINT0_ISR</STRONG> (ARM, 40 bytes, Stack size 8 bytes, eint0.o(i.EINT0_ISR))
+<P><STRONG><a name="[d]"></a>EINT0_ISR</STRONG> (ARM, 184 bytes, Stack size 8 bytes, eint0.o(i.EINT0_ISR))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EINT0_ISR
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> eint0.o(i.initEINT0)
@@ -349,7 +349,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[33]"></a>initEvaluationBoard</STRONG> (ARM, 148 bytes, Stack size 8 bytes, mcb2300 evaluationboard.o(i.initEvaluationBoard))
+<P><STRONG><a name="[33]"></a>initEvaluationBoard</STRONG> (ARM, 152 bytes, Stack size 8 bytes, mcb2300 evaluationboard.o(i.initEvaluationBoard))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = initEvaluationBoard &rArr; lcd_init &rArr; lcd_clear &rArr; set_cursor &rArr; lcd_write_cmd &rArr; wait_while_busy &rArr; lcd_read_status
 </UL>
 <BR>[Calls]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_init
