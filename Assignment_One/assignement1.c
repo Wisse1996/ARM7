@@ -7,16 +7,11 @@
 #define DIT 100 // DIT duration
 #define PAUSE 200000 // pause loop
 
-#define WORKING 1
 
 
 /*** globals ***/
 volatile bool armed = false;
 volatile int count = 0;
-volatile int pulse = 0;
-volatile bool on = false;
-volatile bool shift = false;
-
 
 /************* Interrupt service routine for EINT0 ****************************/
 __irq void EINT0_ISR(void) { // interrupt service routine
@@ -37,55 +32,19 @@ void initEINT0(void) {
 
 /************** interrupt service routine timer1 ******************/
 __irq void T1_ISR (void) {
-		
-#if WORKING
-	if (armed) {
-		if (!on) {
-			LEDS = 0xFF;
-			on = true;
-		}
-		LEDS = ~LEDS; // bit flips
-	} else {
-		LEDS = 0x00; // turn all the leds off
-		on = false;
-	}
-#elif !WORKING
-	if (!shift) {
-		LEDS = LEDS << 1;
-		if (LEDS & 128) 
-			shift = !shift;
-	} else if (shift) {
-		LEDS = LEDS >> 1;
-		if (LEDS & 1) shift = !shift;
-	}
-#endif
-	
-		/* Fun code 1 TIMER FUN
-	
-	pulse++;
-	int toggle = 12;
-	if (pulse < toggle/2) {
-		T1MR0 = 299999;
-	}
-	else if (pulse < toggle) {
-		T1MR0 = 99999;
-	}
-	else if (pulse < toggle * 1.5) {
-		T1MR0 = 199999;
-	}
-	else if (pulse < toggle * 2) {
-		T1MR0 = 99999;
-	}
-	else pulse = 0;
-	*/
-	
 
+	if (armed) {
+	    LEDS = ~LEDS; // bit flips
+        } else {
+            LEDS = 0;
+        }
 	T1IR = 1; // Clear interrupt flag
 	VICVectAddr = 0; // Update interrupt priority hardware
+
 }
 /******************** initializing timer1 ************************/
 void init_T1(void) {
-	T1MR0 = 199999; 
+	T1MR0 = 199999;
 	T1MCR = 3; // Enable interrupt, reset on match register 0
 	T1TCR = 1; // Enable timer1
 	VICVectAddr5 = (unsigned long)T1_ISR; // Set interrupt vector
@@ -93,16 +52,16 @@ void init_T1(void) {
 	VICIntEnable = (1 << 5); // Enable Ttimer1 Interrupt
 }
 
-/*** play morse code for the given time ***/
-void playMorseCode(int time) {
+/*** make the buzzer beep one time ***/
+void beep(int time) {
 	int pwm = PWM; // value for the frequency of the buzzer
-	
+
 	for (int t = 0; t < time; t++) {
-		
+
 		BUZZER = 0xFF;
 		for (int i = 0; i < pwm; i++) {
 		}
-		
+
 		BUZZER = 0x00;
 		for (int i = 0; i < pwm; i++) {
 		}
@@ -119,12 +78,30 @@ void intervalMorse(int time) {
 	}
 }
 
-/*** play morse code 3 times ***/
-void beep(int duration, int interval) {
+/*** make the buzzer beep 3 times ***/
+void beepThreeTimes(int duration, int interval) {
 	for (int i = 0; i < 3; i++) {
-		playMorseCode(duration);
+		beep(duration);
 		intervalMorse(interval);
 	}
+}
+
+/***playMorse code makes the morse code sound  ***/
+void playMorseCode() {
+    // a duration for the dit and 3 times the dah
+    int shortTime = DIT;
+    int longTime = shortTime*3;
+
+    // pause between the beeps
+    int pause = PAUSE;
+
+    // play all the beeps
+    beepThreeTimes(shortTime, pause);	// 3x short
+    beepThreeTimes(longTime, pause);		// 3x long
+    beepThreeTimes(shortTime, pause);	// 3x short
+    // extra pause for new word
+    intervalMorse(shortTime * 1000);
+
 }
 
 /*** print the first line of the lcd, first clear it ***/
@@ -135,7 +112,7 @@ void printFirstLine(char const *string) {
 	}
 	set_cursor(0, 0);
 	lcd_print(empty);
-	
+
 	set_cursor(0, 0);
 	lcd_print(string);
 }
@@ -148,7 +125,7 @@ void printSecondLine(char const *string) {
 	}
 	set_cursor(0, 1);
 	lcd_print(empty);
-	
+
 	set_cursor(0, 1);
 	lcd_print(string);
 }
@@ -167,73 +144,33 @@ int main(void) {
 	initEvaluationBoard();
 	init_T1();
 	initEINT0();
-	
+
 	// declare the 'strings'
 	char *noAlarm = "no alarm";
 	char *armedAlarm = "s.o.s. alarm";
 	char textbuf[17]; // declaration of array of 17 characters
-	
+
 	// print flags
 	bool printAlarm = true;
 	bool printRest = true;
-	
+
 	// loop indefinitly
 	while (1) {
-				
-		if (armed) { 		
+
+		if (armed) {
 			// prints to the lcd only once
 			if (printAlarm) {
 				// print the count on the display
 				printCount(textbuf, count);
-				
+
 				printFirstLine(armedAlarm); // empty and print the first line
 				//lcd_print(armedAlarm);
-				printRest = true;	
+				printRest = true;
 				printAlarm = false;
-				
+
 			}
-			// a duration for the dit and 3 times the dah
-			int shortTime = DIT;
-			int longTime = shortTime*3;
-			
-			// pause between the beeps
-			int pause = PAUSE;
-			
-			// play all the beeps
-			beep(shortTime, pause);	// 3x short
-			beep(longTime, pause);		// 3x long
-			beep(shortTime, pause);	// 3x short
-			
-			/* Old code
-			// 3x short
-			playMorseCode(shortTime);
-			intervalMorse(time);
-			playMorseCode(shortTime);
-			intervalMorse(time);
-			playMorseCode(shortTime);
-			intervalMorse(time);
-			
-			// 3x long
-			playMorseCode(longTime);
-			intervalMorse(time);
-			playMorseCode(longTime);
-			intervalMorse(time);
-			playMorseCode(longTime);
-			intervalMorse(time);
-			
-			// 3x short
-			playMorseCode(shortTime);
-			intervalMorse(time);
-			playMorseCode(shortTime);
-			intervalMorse(time);
-			playMorseCode(shortTime);
-			intervalMorse(time);
-			*/
-			
-			
-			// extra pause for new word
-			intervalMorse(shortTime * 1000);
-		} else {
+                        playMorseCode();
+			} else {
 			// prints to the lcd only once
 			if (printRest) {
 				// print the count on the display
