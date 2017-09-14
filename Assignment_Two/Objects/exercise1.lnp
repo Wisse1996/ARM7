@@ -1,0 +1,9 @@
+--cpu ARM7TDMI
+".\objects\lpc2300.o"
+".\objects\mcb2300 evaluationboard.o"
+".\objects\lcd_4bit.o"
+".\objects\assignement2.o"
+--strict --scatter ".\Objects\exercise1.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\exercise1.map" -o .\Objects\exercise1.axf
