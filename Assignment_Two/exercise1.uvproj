@@ -449,6 +449,21 @@
               <FileType>1</FileType>
               <FilePath>.\Timer0.c</FilePath>
             </File>
+            <File>
+              <FileName>Timer1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Timer1.c</FilePath>
+            </File>
+            <File>
+              <FileName>Timer2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Timer2.c</FilePath>
+            </File>
+            <File>
+              <FileName>Timer3.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Timer3.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

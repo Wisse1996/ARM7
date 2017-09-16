@@ -1,4 +1,7 @@
 #include "MCB2300 evaluationboard.h"  // hardware related functions 
+
+/*** global ***/
+
  
 /************* Interrupt service routine for EINT0 ****************************/ 
 __irq void EINT0_ISR(void) {	// interrupt service routine
