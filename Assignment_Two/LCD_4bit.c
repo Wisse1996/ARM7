@@ -14,7 +14,7 @@
 
 /*------------------------- Speed dependant settings -------------------------*/
 
-/* If processor works on high frequency delay has to be increased, it can be 
+/* If processor works on high frequency delay has to be increased, it can be
    increased by factor 2^N by this constant                                   */
 #define DELAY_2N     0
 
@@ -25,7 +25,7 @@
 
 /*-------------------- LCD interface hardware definitions --------------------*/
 
-/* PINS: 
+/* PINS:
    - DB4 = P1.24
    - DB5 = P1.25
    - DB6 = P1.26
@@ -44,10 +44,10 @@
 #define PINS_DATA             0x0F000000
 
 #ifdef  MCB2300_V1
-  #undef  PIN_E
-  #define PIN_E               0xC0000000
-  #undef  PINS_CTRL
-  #define PINS_CTRL           0xF0000000
+#undef  PIN_E
+#define PIN_E               0xC0000000
+#undef  PINS_CTRL
+#define PINS_CTRL           0xF0000000
 #endif
 
 /* pin E  setting to 0 or 1                                                   */
@@ -79,14 +79,14 @@
 
 /* 8 user defined characters to be loaded into CGRAM (used for bargraph)      */
 const char UserFont[8][8] = {
-  { 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 },
-  { 0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10 },
-  { 0x18,0x18,0x18,0x18,0x18,0x18,0x18,0x18 },
-  { 0x1C,0x1C,0x1C,0x1C,0x1C,0x1C,0x1C,0x1C },
-  { 0x1E,0x1E,0x1E,0x1E,0x1E,0x1E,0x1E,0x1E },
-  { 0x1F,0x1F,0x1F,0x1F,0x1F,0x1F,0x1F,0x1F },
-  { 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 },
-  { 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 }
+  { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 },
+  { 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10 },
+  { 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18 },
+  { 0x1C, 0x1C, 0x1C, 0x1C, 0x1C, 0x1C, 0x1C, 0x1C },
+  { 0x1E, 0x1E, 0x1E, 0x1E, 0x1E, 0x1E, 0x1E, 0x1E },
+  { 0x1F, 0x1F, 0x1F, 0x1F, 0x1F, 0x1F, 0x1F, 0x1F },
+  { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 },
+  { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }
 };
 
 
@@ -144,7 +144,7 @@ static char wait_while_busy (void)
   char status;
 
   do {
-     status = lcd_read_status();
+    status = lcd_read_status();
   }  while (status & 0x80);             /* Wait for busy flag                 */
   return (status);
 }
@@ -160,7 +160,7 @@ void lcd_write_4bit (char c)
 {
   LCD_RW(0)
   LCD_E(1)
-  LCD_DATA_OUT(c&0x0F)
+  LCD_DATA_OUT(c & 0x0F)
   delay(10);
   LCD_E(0)
   delay(10);
@@ -177,7 +177,7 @@ void lcd_write_cmd (char c)
 {
   wait_while_busy();
   LCD_RS(0)
-  lcd_write_4bit (c>>4);
+  lcd_write_4bit (c >> 4);
   lcd_write_4bit (c);
 }
 
@@ -192,7 +192,7 @@ void lcd_putchar(char c)
 {
   wait_while_busy();
   LCD_RS(1)
-  lcd_write_4bit (c>>4);
+  lcd_write_4bit (c >> 4);
   lcd_write_4bit (c);
 }
 
@@ -230,11 +230,11 @@ void lcd_clear (void)
 *******************************************************************************/
 
 void lcd_init (void)
-{ 
+{
   int i;
   char const *p;
 
- // Gebruik Fast GPIO
+// Gebruik Fast GPIO
   SCS |= 0x01;
   /* Set all pins for LCD as outputs                                          */
   LCD_ALL_DIR_OUT
@@ -259,7 +259,7 @@ void lcd_init (void)
     lcd_putchar (*p);
 
   lcd_write_cmd(0x80);                  /* Set DDRAM address counter to 0     */
-  lcd_clear();							// clear display;
+  lcd_clear();              // clear display;
 }
 
 

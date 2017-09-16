@@ -1,11 +1,14 @@
 #include "MCB2300 evaluationboard.h"  // hardware related functions 
+#include <stdbool.h>	// bool C99
+
 
 /*** global ***/
-extern int state;
+extern int state, printLapCount;
+
 
 /*** enable/disable all the 4 timers ***/
 void setAllTimers(int mode) {
-// set all timer's regisers
+// set all timer's registers
 	T0TCR = mode;	// timer0
 	T1TCR = mode;	// timer1
 	T2TCR = mode;	// timer2
@@ -27,13 +30,10 @@ __irq void EINT0_ISR(void) {	// interrupt service routine
 	switch (state) { // case == previous state (current state - > new state)
 	case RESET:
 		state = RUNNING; // -> new state
-		// enable all timers
-		setAllTimers(1);
 		break;
 	case RUNNING:
-		state = STOP;
-		// disable all timers
-		setAllTimers(0);
+		T3TC = 0; // reset the timer counter register
+		printLapCount++;
 		break;
 	case STOP:
 		state = RESET;
