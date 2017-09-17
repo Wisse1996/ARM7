@@ -4,15 +4,19 @@
 #include "MCB2300 evaluationboard.h"	// hardware related functions
 
 /*** Globals ***/
-int t0, t1, t2, t3;
 extern bool printLapTime;
+int t0, t1, t2, t3; // timers testing
 int state; // state | RESET, RUNNING, STOP
-int printLapCount;
+int lapFlag;
 bool print;
 
 
-/*** print to the lcd ***/
+/*** print to the lcd, just for timers testing***/
 void printLCD() {
+	// t0 = 0;
+	// t1 = 0;
+	// t2 = 0;
+	// t3 = 0;
 	char textFirst[17]; // declaration of array of 17 characters
 	char textSecond[17]; // declaration of array of 17 characters
 	// test
@@ -28,74 +32,59 @@ void printLCD() {
 }
 
 /*** print text to lcd ***/
-void printLCDText(char const *string1, char const *string2) {
+void printLCDText(char const *string1, char const *string2, int mode) {
 	char textFirst[17]; // declaration of array of 17 characters
 	char textSecond[17]; // declaration of array of 17 characters
 
-	sprintf(textFirst, string1); // buf is filled
-	set_cursor(0, 0); // cursor position is moved to the upper line
-	lcd_print(textFirst); // the text is written to the Lcd-module
+	// mode | 0 = both, 1 = up, 2 = bottom
+	if ((mode == 0) || (mode == 1)) {
+		sprintf(textFirst, string1); // buf is filled
+		set_cursor(0, 0); // cursor position is moved to the upper line
+		lcd_print(textFirst); // the text is written to the Lcd-module
+	}
 
-	sprintf(textSecond, string2); // buf is filled
-	set_cursor(0, 1); // cursor position is moved to the lower line
-	lcd_print(textSecond); // the text is written to the Lcd-module
+	if ((mode == 0) || (mode == 2)) {
+		sprintf(textSecond, string2); // buf is filled
+		set_cursor(0, 1); // cursor position is moved to the lower line
+		lcd_print(textSecond); // the text is written to the Lcd-module
+	}
 }
 
 /*** Print lap time ***/
 void printLap() {
-	// print lap
-	lcd_clear();
-	char *string1 = "00:00:00:00";
-	char *string2 = "LAPTIME!!!";
-	printLCDText(string1, string2);
-	for (int i = 0; i < 1000000; i++) { // testing
-
-	}
-
-	printLapCount = 0;
+	char *string1 = "";
+	char *string2 = "LAP: 00:00:00:00";
+	printLCDText(string1, string2, 2);
+	lapFlag = 0; // reset the flag
 }
 
 /*** Reset State ***/
 void reset() {
-	// reset timers
-	// print 00:00:00:00
-
-	// test
-	t0 = 0;
-	t1 = 0;
-	t2 = 0;
-	t3 = 0;
-	//lcd_clear();
-	// printLCD();
-	if (print) {
+	if (print) { // print only once
 		lcd_clear();
-		char *string1 = "RESET";
-		char *string2 = "STATE";
-		printLCDText(string1, string2);
+		char *string1 = "T  : 00:00:00:00";
+		char *string2 = "Press to start";
+		printLCDText(string1, string2, 1);
 		print = false;
 	}
 }
 
 /*** Runnging State ***/
 void running() {
-	// timers running
-	// print time
-	char *string1 = "00:00:00:00";
-	char *string2 = "00:00:00:00";
-	printLCDText(string1, string2);
-	if (printLapCount == 2) // button is pressed twice
+	char *string1 = "T  : 00:00:00:01";
+	char *string2 = "STATE";
+	printLCDText(string1, string2, 1);
+	if (lapFlag) // button is pressed
 		printLap();
 }
 
 /*** Stop State ***/
 void stop() {
-	// show time
-	// printLCD();
-	if (!print) {
+	if (!print) { // print only once
 		lcd_clear();
-		char *string1 = "STOP";
-		char *string2 = "STATE";
-		printLCDText(string1, string2);
+		char *string1 = "T  : 00:00:00:02";
+		char *string2 = "";
+		printLCDText(string1, string2, 1);
 		print = true;
 	}
 }
@@ -104,7 +93,7 @@ void stop() {
 void initVar() {
 	state = RESET;
 	print = true;
-	printLapCount = 0;
+	lapFlag = 0;
 }
 
 
@@ -116,7 +105,7 @@ int main(void) {
 	init_T1();	// init timer1 interrupt
 	init_T2();	// init timer2 interrupt
 	init_T3();	// init timer3 interrupt
-	initVar();
+	initVar();	// init program variables
 
 	// loop indefinitely
 	while (1) {

@@ -3,7 +3,7 @@
 
 
 /*** global ***/
-extern int state, printLapCount;
+extern int state, lapFlag;
 
 
 /*** enable/disable all the 4 timers ***/
@@ -30,10 +30,11 @@ __irq void EINT0_ISR(void) {	// interrupt service routine
 	switch (state) { // case == previous state (current state - > new state)
 	case RESET:
 		state = RUNNING; // -> new state
+		lcd_clear(); // <- just for now
 		break;
 	case RUNNING:
 		T3TC = 0; // reset the timer counter register
-		printLapCount++;
+		lapFlag++;
 		break;
 	case STOP:
 		state = RESET;
