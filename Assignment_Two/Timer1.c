@@ -1,13 +1,17 @@
-#include "MCB2300 evaluationboard.h"  // hardware related functions 
+#include "MCB2300 evaluationboard.h"  // hardware related functions
 #include <stdbool.h> // bool C99
 
 /*** global ***/
-
+extern bool labTimerActive;
+extern struct *Time labTime;
 
 /************** interrupt service routine timer1 ******************/
 __irq void T1_ISR (void) {
 	// program code
-
+        if (labTimerActive) {
+            labTime = increaseTimer(labtime);
+            // TODO delay for 10 ms
+        }
 	// interrupt code
 	T1IR        = 1;	// Clear interrupt flag
 	VICVectAddr = 0;	// Update interrupt priority hardware
