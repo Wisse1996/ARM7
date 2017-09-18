@@ -4,12 +4,15 @@
 #include "MCB2300 evaluationboard.h"	// hardware related functions
 
 /*** Globals ***/
-extern bool printLapTime;
+
+bool mainTimerActive;   // this is a bool to check if the mainTimer is active
+bool labTimeActive;     // this is a bool to check if the labtimer is active
 int t0, t1, t2, t3; // timers testing
 int state; // state | RESET, RUNNING, STOP
 int lapFlag;
 bool print;
-
+struct *Time mainTime;
+struct *Time labTime;
 
 /*** print to the lcd, just for timers testing***/
 void printLCD() {
@@ -21,12 +24,12 @@ void printLCD() {
 	char textSecond[17]; // declaration of array of 17 characters
 	// test
 	// print timer0 and timer1 on the first line of the lcd
-	sprintf(textFirst, "t0: %d t1: %d", t0, t1); // buf is filled
+        textFirst = timeString(mainTime);
 	set_cursor(0, 0); // cursor position is moved to the upper line
 	lcd_print(textFirst); // the text is written to the Lcd-module
 
 	// print timer2 and timer3 on the second line of the lcd
-	sprintf(textSecond, "t2: %d t3: %d", t2, t3); // buf is filled
+        textSecond = timeString(labTime)
 	set_cursor(0, 1); // cursor position is moved to the lower line
 	lcd_print(textSecond); // the text is written to the Lcd-module
 }
@@ -52,9 +55,10 @@ void printLCDText(char const *string1, char const *string2, int mode) {
 
 /*** Print lap time ***/
 void printLap() {
-	char *string1 = "";
-	char *string2 = "LAP: 00:00:00:00";
+	char *string1 = timeString(mainTime);
+	char *string2 = timeString(labTime);
 	printLCDText(string1, string2, 2);
+        labTime = resetTimer(labTime);
 	lapFlag = 0; // reset the flag
 }
 
@@ -62,6 +66,8 @@ void printLap() {
 void reset() {
 	if (print) { // print only once
 		lcd_clear();
+                mainTime = resetTimer(mainTime);
+                labTime = resetTimer(mainTime);
 		char *string1 = "T  : 00:00:00:00";
 		char *string2 = "Press to start";
 		printLCDText(string1, string2, 1);
@@ -71,8 +77,8 @@ void reset() {
 
 /*** Runnging State ***/
 void running() {
-	char *string1 = "T  : 00:00:00:01";
-	char *string2 = "STATE";
+	char *string1 = stringTime(mainTime);
+	char *string2 = "Lab: ";
 	printLCDText(string1, string2, 1);
 	if (lapFlag) // button is pressed
 		printLap();
@@ -82,6 +88,8 @@ void running() {
 void stop() {
 	if (!print) { // print only once
 		lcd_clear();
+                mainTimerActive = false;
+                labTimerActive = false;
 		char *string1 = "T  : 00:00:00:02";
 		char *string2 = "";
 		printLCDText(string1, string2, 1);
