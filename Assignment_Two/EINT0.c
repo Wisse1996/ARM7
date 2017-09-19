@@ -4,7 +4,7 @@
 
 /*** global ***/
 extern int state, lapFlag;
-
+extern bool mainTimerActive, labTimerActive, wait;
 
 /*** enable/disable all the 4 timers ***/
 void setAllTimers(int mode) {
@@ -30,10 +30,15 @@ __irq void EINT0_ISR(void) {	// interrupt service routine
 	switch (state) { // case == previous state (current state - > new state)
 	case RESET:
 		state = RUNNING; // -> new state
-		lcd_clear(); // <- just for now
+		mainTimerActive = true;
+		labTimerActive = true;
+		// lcd_clear(); // <- just for now
 		break;
 	case RUNNING:
 		T3TC = 0; // reset the timer counter register
+		T1TC = 0;
+		T1TCR = 1;	// Enable timer1
+		wait = true;
 		lapFlag++;
 		break;
 	case STOP:

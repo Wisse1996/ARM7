@@ -3,3 +3,4 @@
 .\objects\timer1.o: C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H
 .\objects\timer1.o: LCD.h
 .\objects\timer1.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\timer1.o: time.h
