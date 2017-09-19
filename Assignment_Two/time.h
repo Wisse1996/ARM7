@@ -10,7 +10,7 @@ struct Time {
 	int Miliseconds;
 };
 
-//struct Time increaseTime(struct Time *time);
+
 void increaseTime(struct Time *time);
 void timeString(struct Time *time, char string[]);
 void resetTime(struct Time *time);

@@ -6,17 +6,12 @@
 
 /*** Globals ***/
 
-bool mainTimerActive;   // this is a bool to check if the mainTimer is active
-bool labTimerActive;     // this is a bool to check if the labtimer is active
-bool wait;
-int t0, t1, t2, t3; // timers testing
+bool mainTimerActive, labTimerActive;     // this is a bool to check if the labtimer is active
+bool wait, print;
 int state; // state | RESET, RUNNING, STOP
 int lapFlag;
-bool print;
-struct Time *ptrMainTime;
-struct Time *ptrLabTime;
-struct Time mainTime;
-struct Time labTime;
+struct Time *ptrMainTime, *ptrLabTime;
+struct Time mainTime, labTime;
 
 
 /*** print text to lcd ***/
@@ -53,11 +48,16 @@ void printLap() {
 void reset() {
 	if (print) { // print only once
 		lcd_clear();
-		resetTime(ptrMainTime);
-		resetTime(ptrLabTime);
+
+		// cancel the timers
 		labTimerActive = false;
 		mainTimerActive = false;
 
+		// reset the structs
+		resetTime(ptrMainTime);
+		resetTime(ptrLabTime);
+
+		// reset the LCD
 		const char *string1 = "00:00:00:00";
 		const char *string2 = "00:00:00:00";
 		printLCDText(string1, string2, 0);

@@ -1,6 +1,6 @@
 #include "MCB2300 evaluationboard.h"  // hardware related functions
 #include <stdbool.h> // bool C99
-// Button listener //
+
 /*** global ***/
 extern int state;
 

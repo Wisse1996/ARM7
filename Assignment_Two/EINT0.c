@@ -36,10 +36,10 @@ __irq void EINT0_ISR(void) {	// interrupt service routine
 		break;
 	case RUNNING:
 		T3TC = 0; // reset the timer counter register
-		T1TC = 0;
+		T1TC = 0; // T1 count register to zero
 		T1TCR = 1;	// Enable timer1
-		wait = true;
-		lapFlag++;
+		wait = true; // wait for printing 
+		lapFlag++;	// FLAG for lap time
 		break;
 	case STOP:
 		state = RESET;
