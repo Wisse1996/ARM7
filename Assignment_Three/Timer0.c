@@ -3,11 +3,13 @@
 #include "time.h"
 
 /*** global ***/
-
+extern int sampleNumber;
+extern unsigned short TemperatureValue;
 /************** interrupt service routine timer0 ******************/
 __irq void T0_ISR (void) {
-
-
+    TemperatureValue = ReadLM95071SPI();
+    sampleNumber++;
+    // removed the priority things sorry!!
 }
 
 /********************  initializing timer0 ************************/

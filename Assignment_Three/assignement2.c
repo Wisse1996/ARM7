@@ -5,6 +5,22 @@
 #include "time.h"
 
 /*** Globals ***/
+unsigned short TemperatureValue;
+unsigned short oldValue;
+int sampleNumber;
+
+
+
+/*** show the temperature on the lcd ***/
+void showTemperature(unsigned short temp, int sample) {
+    // create the strings and send them to the lcd using printLCDText
+}
+
+/*** send the temperature value to the pc ***/
+void sendValueUSB(unsigned short temp, int sample) {
+    // create the 7 byte asci string and send this to the usb.
+}
+
 
 
 /*** print text to lcd ***/
@@ -32,8 +48,18 @@ int main(void) {
 	initEvaluationBoard();	// init the hardware
 	initEINT0();	// init the button interrupt
 	init_T0();	// init timer0 interrupt
-	init_T1();	// init timer1 interrupt
-	init_T2();	// init timer2 interrupt
-	init_T3();	// init timer3 interrupt
+        oldValue = 0;
+        while(1){
+            if (oldValue == TemperatureValue) {
+                oldValue = TemperatureValue;
+                break;
+            }
+            else {
+                showTemperature(TemperatureValue, sampleNumber);
+                sendValueUSB(TemperatureValue, sampleNumber);
+            }
+
+        }
+
 
 }
