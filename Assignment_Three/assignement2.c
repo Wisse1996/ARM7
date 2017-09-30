@@ -2,26 +2,29 @@
 #include <stdio.h>	// standard C definitions
 #include <stdbool.h>	// bool C99
 #include "MCB2300 evaluationboard.h"	// hardware related functions
-#include "time.h"
+#include "LM95071.h"
 
-/*** Globals ***/
-unsigned short TemperatureValue;
-unsigned short oldValue;
-int sampleNumber;
+/*** globals ***/
+volatile bool update;
 
 
+/*** get a new sample of the sensor ***/
+void updateTemperature(unsigned short *temp, int *sample) {
+	// get a new sample of the sensor through SPI
+	*temp = readLM95071SPI();
+	*sample++;
+}
 
 /*** show the temperature on the lcd ***/
-void showTemperature(unsigned short temp, int sample) {
-    // create the strings and send them to the lcd using printLCDText
+void showTemperature(unsigned short *temp, int *sample) {
+	// create the strings and send them to the lcd using printLCDText
+	// upper line = temperatur, bottom line = sample time
 }
 
 /*** send the temperature value to the pc ***/
-void sendValueUSB(unsigned short temp, int sample) {
-    // create the 7 byte asci string and send this to the usb.
+void sendValueUSB(unsigned short *temp, int *sample) {
+	// create the 7 byte asci string and send this to the usb.
 }
-
-
 
 /*** print text to lcd ***/
 void printLCDText(char const *string1, char const *string2, int mode) {
@@ -48,18 +51,21 @@ int main(void) {
 	initEvaluationBoard();	// init the hardware
 	initEINT0();	// init the button interrupt
 	init_T0();	// init timer0 interrupt
-        oldValue = 0;
-        while(1){
-            if (oldValue == TemperatureValue) {
-                oldValue = TemperatureValue;
-                break;
-            }
-            else {
-                showTemperature(TemperatureValue, sampleNumber);
-                sendValueUSB(TemperatureValue, sampleNumber);
-            }
+	init_SPI(); // init SPI for sensor
 
-        }
+	// keep'm local
+	unsigned short temperatureValue;
+	int sampleNumber;
+
+	// infinite loop
+	while (1) {
+		if (update) { // only update the tempC and update display every sampleTime -> Timer0
+			update = false; // update flag
+			updateTemperature(&temperatureValue, &sampleNumber);
+			showTemperature(&temperatureValue, &sampleNumber);
+			sendValueUSB(&temperatureValue, &sampleNumber);
+		}
+	}
 
 
 }

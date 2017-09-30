@@ -4,6 +4,10 @@
 
 /************** interrupt service routine timer3 ******************/
 __irq void T3_ISR (void) {
+
+	// interrupt code
+	T3IR        = 1;	// Clear interrupt flag
+	VICVectAddr = 0;	// Update interrupt priority hardware
 }
 
 /********************  initializing timer3 ************************/

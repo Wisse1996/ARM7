@@ -8,12 +8,6 @@ void initEvaluationBoard(void) {
 	LEDS = 0x00; // on reset all leds are off
 	BUZZER = 0x00; // BUZZER off at start
 
-	// make sure all 4 timers are activited at power on -> datasheet
-	PCONP |= (1 << 1);
-	PCONP |= (1 << 2);
-	PCONP |= (1 << 22);
-	PCONP |= (1 << 23);
-
 	// init the lcd
 	lcd_init();
 }

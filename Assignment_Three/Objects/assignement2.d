@@ -4,4 +4,4 @@
 .\objects\assignement2.o: MCB2300 evaluationboard.h
 .\objects\assignement2.o: C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H
 .\objects\assignement2.o: LCD.h
-.\objects\assignement2.o: time.h
+.\objects\assignement2.o: LM95071.h

@@ -1,46 +1,46 @@
 Dependencies for Project 'exercise1', Target 'LPC2378': (DO NOT MODIFY !)
-F (.\LPC2300.s)(0x59BA4F3F)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips--pd "__UVISION_VERSION SETA 517"--list .\listings\lpc2300.lst --xref -o .\objects\lpc2300.o --depend .\objects\lpc2300.d)
-F (.\MCB2300 evaluationboard.c)(0x59BD4177)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o ".\objects\mcb2300 evaluationboard.o" --omf_browse ".\objects\mcb2300 evaluationboard.crf" --depend ".\objects\mcb2300 evaluationboard.d")
-I (MCB2300 evaluationboard.h)(0x59BE8821)
+F (.\LPC2300.s)(0x59D00641)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips--pd "__UVISION_VERSION SETA 517"--list .\listings\lpc2300.lst --xref -o .\objects\lpc2300.o --depend .\objects\lpc2300.d)
+F (.\MCB2300 evaluationboard.c)(0x59D017E6)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o ".\objects\mcb2300 evaluationboard.o" --omf_browse ".\objects\mcb2300 evaluationboard.crf" --depend ".\objects\mcb2300 evaluationboard.d")
+I (MCB2300 evaluationboard.h)(0x59D00641)
 I (C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H)(0x53201D36)
-I (LCD.h)(0x59BA4F3F)
-F (.\LCD_4bit.c)(0x59BE7CCC)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\lcd_4bit.o --omf_browse .\objects\lcd_4bit.crf --depend .\objects\lcd_4bit.d)
+I (LCD.h)(0x59D00641)
+F (.\LCD_4bit.c)(0x59D00641)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\lcd_4bit.o --omf_browse .\objects\lcd_4bit.crf --depend .\objects\lcd_4bit.d)
 I (C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H)(0x53201D36)
-F (.\assignement2.c)(0x59C11BA1)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\assignement2.o --omf_browse .\objects\assignement2.crf --depend .\objects\assignement2.d)
+F (.\assignement2.c)(0x59D016C8)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\assignement2.o --omf_browse .\objects\assignement2.crf --depend .\objects\assignement2.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x55DB7FD6)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x55DB7FD6)
-I (MCB2300 evaluationboard.h)(0x59BE8821)
+I (MCB2300 evaluationboard.h)(0x59D00641)
 I (C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H)(0x53201D36)
-I (LCD.h)(0x59BA4F3F)
-I (time.h)(0x59C11B13)
-F (.\EINT0.c)(0x59C11B17)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\eint0.o --omf_browse .\objects\eint0.crf --depend .\objects\eint0.d)
-I (MCB2300 evaluationboard.h)(0x59BE8821)
+I (LCD.h)(0x59D00641)
+I (LM95071.h)(0x59D0226F)
+F (.\EINT0.c)(0x59D007A5)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\eint0.o --omf_browse .\objects\eint0.crf --depend .\objects\eint0.d)
+I (MCB2300 evaluationboard.h)(0x59D00641)
 I (C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H)(0x53201D36)
-I (LCD.h)(0x59BA4F3F)
+I (LCD.h)(0x59D00641)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x55DB7FD6)
-F (.\Timer0.c)(0x59C11B1A)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\timer0.o --omf_browse .\objects\timer0.crf --depend .\objects\timer0.d)
-I (MCB2300 evaluationboard.h)(0x59BE8821)
+F (.\Timer0.c)(0x59D0148E)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\timer0.o --omf_browse .\objects\timer0.crf --depend .\objects\timer0.d)
+I (MCB2300 evaluationboard.h)(0x59D00641)
 I (C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H)(0x53201D36)
-I (LCD.h)(0x59BA4F3F)
+I (LCD.h)(0x59D00641)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x55DB7FD6)
-I (time.h)(0x59C11B13)
-F (.\Timer1.c)(0x59C11BDB)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\timer1.o --omf_browse .\objects\timer1.crf --depend .\objects\timer1.d)
-I (MCB2300 evaluationboard.h)(0x59BE8821)
+F (.\Timer1.c)(0x59D0083C)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\timer1.o --omf_browse .\objects\timer1.crf --depend .\objects\timer1.d)
+I (MCB2300 evaluationboard.h)(0x59D00641)
 I (C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H)(0x53201D36)
-I (LCD.h)(0x59BA4F3F)
+I (LCD.h)(0x59D00641)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x55DB7FD6)
-I (time.h)(0x59C11B13)
-F (.\Timer2.c)(0x59C10278)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\timer2.o --omf_browse .\objects\timer2.crf --depend .\objects\timer2.d)
-I (MCB2300 evaluationboard.h)(0x59BE8821)
+F (.\Timer2.c)(0x59D00844)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\timer2.o --omf_browse .\objects\timer2.crf --depend .\objects\timer2.d)
+I (MCB2300 evaluationboard.h)(0x59D00641)
 I (C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H)(0x53201D36)
-I (LCD.h)(0x59BA4F3F)
+I (LCD.h)(0x59D00641)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x55DB7FD6)
-F (.\Timer3.c)(0x59C11B20)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\timer3.o --omf_browse .\objects\timer3.crf --depend .\objects\timer3.d)
-I (MCB2300 evaluationboard.h)(0x59BE8821)
+F (.\Timer3.c)(0x59D00846)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\timer3.o --omf_browse .\objects\timer3.crf --depend .\objects\timer3.d)
+I (MCB2300 evaluationboard.h)(0x59D00641)
 I (C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H)(0x53201D36)
-I (LCD.h)(0x59BA4F3F)
+I (LCD.h)(0x59D00641)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x55DB7FD6)
-F (.\time.c)(0x59C11B33)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\time.o --omf_browse .\objects\time.crf --depend .\objects\time.d)
+F (.\LM95071.c)(0x59D0256A)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\lm95071.o --omf_browse .\objects\lm95071.crf --depend .\objects\lm95071.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x55DB7FD6)
-I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x55DB7FD8)
-I (time.h)(0x59C11B13)
+I (LM95071.h)(0x59D0226F)
+I (MCB2300 evaluationboard.h)(0x59D00641)
+I (C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H)(0x53201D36)
+I (LCD.h)(0x59D00641)

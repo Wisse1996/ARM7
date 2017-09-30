@@ -1,9 +1,12 @@
 #include "MCB2300 evaluationboard.h"  // hardware related functions
 #include <stdbool.h> // bool C99
-#include "time.h"
 
 /************** interrupt service routine timer1 ******************/
 __irq void T1_ISR (void) {
+
+	// interrupt code
+	T1IR        = 1;	// Clear interrupt flag
+	VICVectAddr = 0;	// Update interrupt priority hardware
 }
 
 /********************  initializing timer1 ************************/
