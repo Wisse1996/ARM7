@@ -465,9 +465,9 @@
               <FilePath>.\Timer3.c</FilePath>
             </File>
             <File>
-              <FileName>time.c</FileName>
+              <FileName>LM95071.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\time.c</FilePath>
+              <FilePath>.\LM95071.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -21,4 +21,6 @@ void init_T2(void);	// function prototype
 void init_T3(void);	// function prototype
 void initEINT0(void);	// function prototype
 
+void printLCDText(char const *string1, char const *string2, int mode);
+
 #endif

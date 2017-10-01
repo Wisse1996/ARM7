@@ -4,6 +4,8 @@
 #include "MCB2300 evaluationboard.h"	// hardware related functions
 #include "LM95071.h"
 
+#define SCALE 0.03125
+
 /*** globals ***/
 volatile bool update;
 
@@ -17,13 +19,67 @@ void updateTemperature(unsigned short *temp, int *sample) {
 
 /*** show the temperature on the lcd ***/
 void showTemperature(unsigned short *temp, int *sample) {
-	// create the strings and send them to the lcd using printLCDText
-	// upper line = temperatur, bottom line = sample time
+	// first two bits are useless
+	// 14 bit data bit 2s complement
+	unsigned short buf = *temp; // 2 byte temp value
+	float value;
+	char textbuf[17];
+	char textbuf1[17];
+
+	if (buf & 0x8000) { // signed | last bit 1
+		buf = buf >> 2; // lose the first two bits
+		buf -= 1;
+		buf = ~buf;
+		buf ^= 0xc000; // revert the last two bits
+		value = buf * SCALE;
+		sprintf(textbuf, "T: -%f", value);
+	} else { //not signed
+		buf = buf >> 2; // lose the first two bits
+		value = buf * SCALE;
+		sprintf(textbuf, "T: +%f", value);
+	}
+
+	sprintf(textbuf1, "S: %d", *sample);
+	printLCDText(textbuf, textbuf1, 0);
 }
 
 /*** send the temperature value to the pc ***/
 void sendValueUSB(unsigned short *temp, int *sample) {
 	// create the 7 byte asci string and send this to the usb.
+	unsigned char usb[8] = {0}; // string to send
+	unsigned short buf = *temp; // 2 byte temp value
+	float value;
+	char sign;
+
+	if (buf & 0x8000) { // signed | last bit 1
+		usb[0] = '-';
+		buf = buf >> 2; // lose the first two bits
+		buf -= 1;
+		buf = ~buf;
+		value = buf * SCALE;
+		sign = '-';
+	} else { //not signed
+		usb[0] = '+';
+		buf = buf >> 2; // lose the first two bits
+		value = buf * SCALE;
+		sign = '+';
+	}
+	int numbers[3] = {0};
+	char textbuf[5];
+	sprintf(textbuf, "%05.1f", test);
+	for (int i = 0, j = 1; i < 5; i++, j++) {
+		usb[j] = textbuf[i];
+	}
+	usb[0] = sign;
+
+	unsigned char msbPtr = sample;
+	unsigned char lsbPtr = sample;
+	msbPtr++;
+
+	usb[6] = *msbPtr; // MSByte sample
+	usb[7] = *lsbPtr; // LSByte sample
+
+	// send usb[] to PC?
 }
 
 /*** print text to lcd ***/
@@ -66,6 +122,4 @@ int main(void) {
 			sendValueUSB(&temperatureValue, &sampleNumber);
 		}
 	}
-
-
 }
