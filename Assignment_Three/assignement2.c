@@ -11,14 +11,14 @@ volatile bool update;
 
 
 /*** get a new sample of the sensor ***/
-void updateTemperature(unsigned short *temp, int *sample) {
+void updateTemperature(unsigned short *temp, unsigned short *sample) {
 	// get a new sample of the sensor through SPI
 	*temp = readLM95071SPI();
 	*sample++;
 }
 
 /*** show the temperature on the lcd ***/
-void showTemperature(unsigned short *temp, int *sample) {
+void showTemperature(unsigned short *temp, unsigned short *sample) {
 	// first two bits are useless
 	// 14 bit data bit 2s complement
 	unsigned short buf = *temp; // 2 byte temp value
@@ -44,9 +44,9 @@ void showTemperature(unsigned short *temp, int *sample) {
 }
 
 /*** send the temperature value to the pc ***/
-void sendValueUSB(unsigned short *temp, int *sample) {
+void sendValueUSB(unsigned short *temp, unsigned short *sample) {
 	// create the 7 byte asci string and send this to the usb.
-	unsigned char usb[8] = {0}; // string to send
+	unsigned char usb[8]; // string to send
 	unsigned short buf = *temp; // 2 byte temp value
 	float value;
 	char sign;
@@ -56,6 +56,7 @@ void sendValueUSB(unsigned short *temp, int *sample) {
 		buf = buf >> 2; // lose the first two bits
 		buf -= 1;
 		buf = ~buf;
+		buf ^= 0xc000; // revert the last two bits
 		value = buf * SCALE;
 		sign = '-';
 	} else { //not signed
@@ -64,20 +65,19 @@ void sendValueUSB(unsigned short *temp, int *sample) {
 		value = buf * SCALE;
 		sign = '+';
 	}
-	int numbers[3] = {0};
 	char textbuf[5];
-	sprintf(textbuf, "%05.1f", test);
+	sprintf(textbuf, "%05.1f", value);
 	for (int i = 0, j = 1; i < 5; i++, j++) {
 		usb[j] = textbuf[i];
 	}
 	usb[0] = sign;
 
-	unsigned char msbPtr = sample;
-	unsigned char lsbPtr = sample;
-	msbPtr++;
+	// unsigned char *msbPtr = sample;
+	// unsigned char *lsbPtr = sample;
+	// msbPtr++;
 
-	usb[6] = *msbPtr; // MSByte sample
-	usb[7] = *lsbPtr; // LSByte sample
+	usb[6] = (*sample >> (8*1)) & 0xff;	//*msbPtr; // MSByte sample
+	usb[7] = (*sample >> (8*0)) & 0xff;	//*lsbPtr; // LSByte sample
 
 	// send usb[] to PC?
 }
@@ -111,7 +111,7 @@ int main(void) {
 
 	// keep'm local
 	unsigned short temperatureValue;
-	int sampleNumber;
+	unsigned short sampleNumber;
 
 	// infinite loop
 	while (1) {
