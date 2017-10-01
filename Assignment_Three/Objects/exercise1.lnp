@@ -9,6 +9,11 @@
 ".\objects\timer2.o"
 ".\objects\timer3.o"
 ".\objects\lm95071.o"
+".\objects\hiduser.o"
+".\objects\usbcore.o"
+".\objects\usbdesc.o"
+".\objects\usbhw.o"
+".\objects\usbuser.o"
 --strict --scatter ".\Objects\exercise1.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

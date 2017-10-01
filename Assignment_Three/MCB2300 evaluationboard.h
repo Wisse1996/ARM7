@@ -23,4 +23,5 @@ void initEINT0(void);	// function prototype
 
 void printLCDText(char const *string1, char const *string2, int mode);
 
+
 #endif

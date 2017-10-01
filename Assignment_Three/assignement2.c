@@ -3,18 +3,46 @@
 #include <stdbool.h>	// bool C99
 #include "MCB2300 evaluationboard.h"	// hardware related functions
 #include "LM95071.h"
+#include <LPC23xx.H>                        /* LPC23xx definitions */
+#include "type.h"
+#include "usb.h"
+#include "usbcfg.h"
+#include "usbhw.h"
+#include "usbcore.h"
+#include "demo.h"
 
 #define SCALE 0.03125
 
 /*** globals ***/
-volatile bool update;
+volatile bool update = false;
+volatile bool newData = false;
+unsigned char usb[8]; // string to send
 
+
+// Function GetInReport() is invoked by the USB ISR when an InReport has been sent.
+// The data sent to the USB-host at the next InReport are stored in InReport[]
+void GetInReport () {
+	if (newData) {
+		newData = false;
+		// transfer the data to the inreport structure
+		for (int i = 0; i < 8; i++) {
+			InReport[i] = usb[i];
+			usb[i] = 0; // clear array?
+		}
+	}
+}
+
+// Function SetOutReport() is invoked by the USB ISR when an OutReport has been received.
+// The data sent by the USB-host is stored in OutReport[]
+void SetOutReport () {
+	// do something
+}
 
 /*** get a new sample of the sensor ***/
 void updateTemperature(unsigned short *temp, unsigned short *sample) {
 	// get a new sample of the sensor through SPI
 	*temp = readLM95071SPI();
-	*sample++;
+	(*sample)++;
 }
 
 /*** show the temperature on the lcd ***/
@@ -32,11 +60,11 @@ void showTemperature(unsigned short *temp, unsigned short *sample) {
 		buf = ~buf;
 		buf ^= 0xc000; // revert the last two bits
 		value = buf * SCALE;
-		sprintf(textbuf, "T: -%f", value);
+		sprintf(textbuf, "T: -%05.1f", value);
 	} else { //not signed
 		buf = buf >> 2; // lose the first two bits
 		value = buf * SCALE;
-		sprintf(textbuf, "T: +%f", value);
+		sprintf(textbuf, "T: +%05.1f", value);
 	}
 
 	sprintf(textbuf1, "S: %d", *sample);
@@ -46,11 +74,11 @@ void showTemperature(unsigned short *temp, unsigned short *sample) {
 /*** send the temperature value to the pc ***/
 void sendValueUSB(unsigned short *temp, unsigned short *sample) {
 	// create the 7 byte asci string and send this to the usb.
-	unsigned char usb[8]; // string to send
 	unsigned short buf = *temp; // 2 byte temp value
 	float value;
 	char sign;
 
+	// reverse 2s complement
 	if (buf & 0x8000) { // signed | last bit 1
 		usb[0] = '-';
 		buf = buf >> 2; // lose the first two bits
@@ -76,10 +104,11 @@ void sendValueUSB(unsigned short *temp, unsigned short *sample) {
 	// unsigned char *lsbPtr = sample;
 	// msbPtr++;
 
-	usb[6] = (*sample >> (8*1)) & 0xff;	//*msbPtr; // MSByte sample
-	usb[7] = (*sample >> (8*0)) & 0xff;	//*lsbPtr; // LSByte sample
+	usb[6] = (*sample >> (8 * 1)) & 0xff;	//*msbPtr; // MSByte sample
+	usb[7] = (*sample >> (8 * 0)) & 0xff;	//*lsbPtr; // LSByte sample
 
-	// send usb[] to PC?
+	// set data flag
+	newData = true;
 }
 
 /*** print text to lcd ***/
@@ -91,13 +120,13 @@ void printLCDText(char const *string1, char const *string2, int mode) {
 	if ((mode == 0) || (mode == 1)) {
 		sprintf(textFirst, string1); // buf is filled
 		set_cursor(0, 0); // cursor position is moved to the upper line
-		lcd_print(string1); // the text is written to the Lcd-module
+		lcd_print(textFirst); // the text is written to the Lcd-module
 	}
 
 	if ((mode == 0) || (mode == 2)) {
 		sprintf(textSecond, string2); // buf is filled
 		set_cursor(0, 1); // cursor position is moved to the lower line
-		lcd_print(string2); // the text is written to the Lcd-module
+		lcd_print(textSecond); // the text is written to the Lcd-module
 	}
 }
 
@@ -108,6 +137,7 @@ int main(void) {
 	initEINT0();	// init the button interrupt
 	init_T0();	// init timer0 interrupt
 	init_SPI(); // init SPI for sensor
+	USB_Init(); // init USB for InReport
 
 	// keep'm local
 	unsigned short temperatureValue;

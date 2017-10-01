@@ -1,46 +1,94 @@
 Dependencies for Project 'exercise1', Target 'LPC2378': (DO NOT MODIFY !)
 F (.\LPC2300.s)(0x59D00641)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips--pd "__UVISION_VERSION SETA 517"--list .\listings\lpc2300.lst --xref -o .\objects\lpc2300.o --depend .\objects\lpc2300.d)
 F (.\MCB2300 evaluationboard.c)(0x59D017E6)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o ".\objects\mcb2300 evaluationboard.o" --omf_browse ".\objects\mcb2300 evaluationboard.crf" --depend ".\objects\mcb2300 evaluationboard.d")
-I (MCB2300 evaluationboard.h)(0x59D0CC1B)
+I (MCB2300 evaluationboard.h)(0x59D153CD)
 I (C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H)(0x53201D36)
 I (LCD.h)(0x59D00641)
 F (.\LCD_4bit.c)(0x59D00641)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\lcd_4bit.o --omf_browse .\objects\lcd_4bit.crf --depend .\objects\lcd_4bit.d)
 I (C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H)(0x53201D36)
-F (.\assignement2.c)(0x59D0F849)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\assignement2.o --omf_browse .\objects\assignement2.crf --depend .\objects\assignement2.d)
+F (.\assignement2.c)(0x59D15BC1)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\assignement2.o --omf_browse .\objects\assignement2.crf --depend .\objects\assignement2.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x55DB7FD6)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x55DB7FD6)
-I (MCB2300 evaluationboard.h)(0x59D0CC1B)
+I (MCB2300 evaluationboard.h)(0x59D153CD)
 I (C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H)(0x53201D36)
 I (LCD.h)(0x59D00641)
 I (LM95071.h)(0x59D0226F)
+I (type.h)(0x59D152E8)
+I (usb.h)(0x59D152E8)
+I (usbcfg.h)(0x59D152E8)
+I (usbhw.h)(0x59D152E8)
+I (usbcore.h)(0x59D152E8)
+I (demo.h)(0x59D152E8)
 F (.\EINT0.c)(0x59D007A5)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\eint0.o --omf_browse .\objects\eint0.crf --depend .\objects\eint0.d)
-I (MCB2300 evaluationboard.h)(0x59D0CC1B)
+I (MCB2300 evaluationboard.h)(0x59D153CD)
 I (C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H)(0x53201D36)
 I (LCD.h)(0x59D00641)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x55DB7FD6)
-F (.\Timer0.c)(0x59D0148E)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\timer0.o --omf_browse .\objects\timer0.crf --depend .\objects\timer0.d)
-I (MCB2300 evaluationboard.h)(0x59D0CC1B)
+F (.\Timer0.c)(0x59D15874)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\timer0.o --omf_browse .\objects\timer0.crf --depend .\objects\timer0.d)
+I (MCB2300 evaluationboard.h)(0x59D153CD)
 I (C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H)(0x53201D36)
 I (LCD.h)(0x59D00641)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x55DB7FD6)
 F (.\Timer1.c)(0x59D0083C)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\timer1.o --omf_browse .\objects\timer1.crf --depend .\objects\timer1.d)
-I (MCB2300 evaluationboard.h)(0x59D0CC1B)
+I (MCB2300 evaluationboard.h)(0x59D153CD)
 I (C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H)(0x53201D36)
 I (LCD.h)(0x59D00641)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x55DB7FD6)
 F (.\Timer2.c)(0x59D00844)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\timer2.o --omf_browse .\objects\timer2.crf --depend .\objects\timer2.d)
-I (MCB2300 evaluationboard.h)(0x59D0CC1B)
+I (MCB2300 evaluationboard.h)(0x59D153CD)
 I (C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H)(0x53201D36)
 I (LCD.h)(0x59D00641)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x55DB7FD6)
 F (.\Timer3.c)(0x59D00846)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\timer3.o --omf_browse .\objects\timer3.crf --depend .\objects\timer3.d)
-I (MCB2300 evaluationboard.h)(0x59D0CC1B)
+I (MCB2300 evaluationboard.h)(0x59D153CD)
 I (C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H)(0x53201D36)
 I (LCD.h)(0x59D00641)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x55DB7FD6)
 F (.\LM95071.c)(0x59D0256A)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\lm95071.o --omf_browse .\objects\lm95071.crf --depend .\objects\lm95071.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x55DB7FD6)
 I (LM95071.h)(0x59D0226F)
-I (MCB2300 evaluationboard.h)(0x59D0CC1B)
+I (MCB2300 evaluationboard.h)(0x59D153CD)
 I (C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H)(0x53201D36)
 I (LCD.h)(0x59D00641)
+F (.\hiduser.c)(0x59D152D5)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\hiduser.o --omf_browse .\objects\hiduser.crf --depend .\objects\hiduser.d)
+I (type.h)(0x59D152E8)
+I (usb.h)(0x59D152E8)
+I (hid.h)(0x59D152E8)
+I (usbcfg.h)(0x59D152E8)
+I (usbcore.h)(0x59D152E8)
+I (hiduser.h)(0x59D152E8)
+I (usbuser.h)(0x59D152E8)
+I (usbhw.h)(0x59D152E8)
+F (.\usbcore.c)(0x59D152D5)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\usbcore.o --omf_browse .\objects\usbcore.crf --depend .\objects\usbcore.d)
+I (type.h)(0x59D152E8)
+I (usb.h)(0x59D152E8)
+I (usbcfg.h)(0x59D152E8)
+I (usbhw.h)(0x59D152E8)
+I (usbcore.h)(0x59D152E8)
+I (usbdesc.h)(0x59D152E8)
+I (usbuser.h)(0x59D152E8)
+I (hid.h)(0x59D152E8)
+I (hiduser.h)(0x59D152E8)
+F (.\usbdesc.c)(0x59D152D5)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\usbdesc.o --omf_browse .\objects\usbdesc.crf --depend .\objects\usbdesc.d)
+I (type.h)(0x59D152E8)
+I (usb.h)(0x59D152E8)
+I (hid.h)(0x59D152E8)
+I (usbcfg.h)(0x59D152E8)
+I (usbdesc.h)(0x59D152E8)
+F (.\usbhw.c)(0x59D152D5)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\usbhw.o --omf_browse .\objects\usbhw.crf --depend .\objects\usbhw.d)
+I (C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H)(0x53201D36)
+I (type.h)(0x59D152E8)
+I (usb.h)(0x59D152E8)
+I (usbcfg.h)(0x59D152E8)
+I (usbreg.h)(0x59D152E8)
+I (usbhw.h)(0x59D152E8)
+I (usbcore.h)(0x59D152E8)
+I (usbuser.h)(0x59D152E8)
+F (.\usbuser.c)(0x59D152D5)(--c99 -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Philips-D__UVISION_VERSION="517"-o .\objects\usbuser.o --omf_browse .\objects\usbuser.crf --depend .\objects\usbuser.d)
+I (C:\Keil_v5\ARM\Inc\Philips\LPC23xx.H)(0x53201D36)
+I (type.h)(0x59D152E8)
+I (usb.h)(0x59D152E8)
+I (usbcfg.h)(0x59D152E8)
+I (usbhw.h)(0x59D152E8)
+I (usbcore.h)(0x59D152E8)
+I (usbuser.h)(0x59D152E8)
