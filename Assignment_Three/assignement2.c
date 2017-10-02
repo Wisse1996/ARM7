@@ -60,11 +60,11 @@ void showTemperature(unsigned short *temp, unsigned short *sample) {
 		buf = ~buf;
 		buf ^= 0xc000; // revert the last two bits
 		value = buf * SCALE;
-		sprintf(textbuf, "T: -%05.1f", value);
+		sprintf(textbuf, "T: -%4.1f", value);
 	} else { //not signed
 		buf = buf >> 2; // lose the first two bits
 		value = buf * SCALE;
-		sprintf(textbuf, "T: +%05.1f", value);
+		sprintf(textbuf, "T: +%4.1f", value);
 	}
 
 	sprintf(textbuf1, "S: %d", *sample);
@@ -100,12 +100,8 @@ void sendValueUSB(unsigned short *temp, unsigned short *sample) {
 	}
 	usb[0] = sign;
 
-	// unsigned char *msbPtr = sample;
-	// unsigned char *lsbPtr = sample;
-	// msbPtr++;
-
-	usb[6] = (*sample >> (8 * 1)) & 0xff;	//*msbPtr; // MSByte sample
-	usb[7] = (*sample >> (8 * 0)) & 0xff;	//*lsbPtr; // LSByte sample
+	usb[6] = (*sample >> (8 * 1)) & 0xff;	// MSByte sample
+	usb[7] = (*sample >> (8 * 0)) & 0xff;	// LSByte sample
 
 	// set data flag
 	newData = true;
@@ -121,6 +117,8 @@ void printLCDText(char const *string1, char const *string2, int mode) {
 		sprintf(textFirst, string1); // buf is filled
 		set_cursor(0, 0); // cursor position is moved to the upper line
 		lcd_print(textFirst); // the text is written to the Lcd-module
+		lcd_putchar(0x07);
+		lcd_print("C");
 	}
 
 	if ((mode == 0) || (mode == 2)) {
@@ -134,10 +132,10 @@ void printLCDText(char const *string1, char const *string2, int mode) {
 /*** Main code ***/
 int main(void) {
 	initEvaluationBoard();	// init the hardware
+	USB_Init(); // init USB for InReport
 	initEINT0();	// init the button interrupt
 	init_T0();	// init timer0 interrupt
 	init_SPI(); // init SPI for sensor
-	USB_Init(); // init USB for InReport
 
 	// keep'm local
 	unsigned short temperatureValue;

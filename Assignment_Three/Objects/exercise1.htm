@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\exercise1.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\exercise1.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Sun Oct 01 23:19:01 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Mon Oct 02 14:55:10 2017
 <BR><P>
 <H3>Maximum Stack Usage =        312 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -949,7 +949,8 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_4bit
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_while_busy
 </UL>
-<BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_print
+<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printLCDText
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_print
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_init
 </UL>
 
@@ -989,18 +990,19 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> __rtentry2.o(.ARM.Collect$$rtentry$$0000000D)
 </UL>
-<P><STRONG><a name="[88]"></a>printLCDText</STRONG> (ARM, 128 bytes, Stack size 56 bytes, assignement2.o(i.printLCDText))
+<P><STRONG><a name="[88]"></a>printLCDText</STRONG> (ARM, 144 bytes, Stack size 56 bytes, assignement2.o(i.printLCDText))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
 <LI>Call Chain = printLCDText &rArr; __2sprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf (via Veneer)
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_cursor
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_putchar
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_print
 </UL>
 <BR>[Called By]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;showTemperature
 </UL>
 
-<P><STRONG><a name="[8d]"></a>readLM95071SPI</STRONG> (ARM, 108 bytes, Stack size 0 bytes, lm95071.o(i.readLM95071SPI))
+<P><STRONG><a name="[8d]"></a>readLM95071SPI</STRONG> (ARM, 104 bytes, Stack size 0 bytes, lm95071.o(i.readLM95071SPI))
 <BR><BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateTemperature
 </UL>
 
