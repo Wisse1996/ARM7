@@ -16,7 +16,7 @@
 /*** globals ***/
 volatile bool update = false;
 volatile bool newData = false;
-unsigned char usb[8]; // string to send
+volatile unsigned char usb[8]; // string to send
 
 
 // Function GetInReport() is invoked by the USB ISR when an InReport has been sent.
@@ -27,28 +27,23 @@ void GetInReport () {
 		// transfer the data to the inreport structure
 		for (int i = 0; i < 8; i++) {
 			InReport[i] = usb[i];
-			usb[i] = 0; // clear array?
+			usb[i] = 0;
 		}
 	}
 }
 
-// Function SetOutReport() is invoked by the USB ISR when an OutReport has been received.
-// The data sent by the USB-host is stored in OutReport[]
 void SetOutReport () {
 	// do something
 }
 
 /*** get a new sample of the sensor ***/
 void updateTemperature(unsigned short *temp, unsigned short *sample) {
-	// get a new sample of the sensor through SPI
 	*temp = readLM95071SPI();
 	(*sample)++;
 }
 
 /*** show the temperature on the lcd ***/
 void showTemperature(unsigned short *temp, unsigned short *sample) {
-	// first two bits are useless
-	// 14 bit data bit 2s complement
 	unsigned short buf = *temp; // 2 byte temp value
 	float value;
 	char textbuf[17];
@@ -60,14 +55,14 @@ void showTemperature(unsigned short *temp, unsigned short *sample) {
 		buf = ~buf;
 		buf ^= 0xc000; // revert the last two bits
 		value = buf * SCALE;
-		sprintf(textbuf, "T: -%4.1f", value);
+		sprintf(textbuf, "   -%4.1f", value);
 	} else { //not signed
 		buf = buf >> 2; // lose the first two bits
 		value = buf * SCALE;
-		sprintf(textbuf, "T: +%4.1f", value);
+		sprintf(textbuf, "   +%4.1f", value);
 	}
 
-	sprintf(textbuf1, "S: %d", *sample);
+	sprintf(textbuf1, "Samples %d", *sample);
 	printLCDText(textbuf, textbuf1, 0);
 }
 
@@ -111,6 +106,8 @@ void sendValueUSB(unsigned short *temp, unsigned short *sample) {
 void printLCDText(char const *string1, char const *string2, int mode) {
 	char textFirst[17]; // declaration of array of 17 characters
 	char textSecond[17]; // declaration of array of 17 characters
+  
+  lcd_clear();
 
 	// mode | 0 = both, 1 = up, 2 = bottom
 	if ((mode == 0) || (mode == 1)) {
@@ -132,11 +129,15 @@ void printLCDText(char const *string1, char const *string2, int mode) {
 /*** Main code ***/
 int main(void) {
 	initEvaluationBoard();	// init the hardware
-	USB_Init(); // init USB for InReport
-	initEINT0();	// init the button interrupt
 	init_T0();	// init timer0 interrupt
 	init_SPI(); // init SPI for sensor
-
+	USB_Init(); // init USB for InReport
+  
+  // info print
+  lcd_print("Initializing");
+  set_cursor(0,1);
+  lcd_print("Reading sensor");
+  
 	// keep'm local
 	unsigned short temperatureValue;
 	unsigned short sampleNumber;

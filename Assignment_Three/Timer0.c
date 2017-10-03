@@ -16,7 +16,7 @@ __irq void T0_ISR (void) {
 
 /********************  initializing timer0 ************************/
 void init_T0(void) {
-	T0MR0 = 2400000 - 1;
+	T0MR0 = 12000000 - 1; // 1 sec
 	T0MCR = 3;	// enable interupt and reset on match0 -> DS 557
 	T0TCR = 1;	// Enable timer0
 	VICVectAddr4 = (unsigned long)T0_ISR;	// Set interrupt vector
