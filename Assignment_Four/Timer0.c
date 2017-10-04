@@ -22,6 +22,6 @@ void init_T0(void) {
 	T0MCR = 3;	// enable interupt and reset on match0 -> DS 557
 	T0TCR = 1;	// Enable timer0
 	VICVectAddr4 = (unsigned long)T0_ISR;	// Set interrupt vector
-	VICVectPriority4 = 9;	// Set to priority 10 (arbitrary value)
+	VICVectPriority4 = 5;	// Set to priority 10 (arbitrary value)
 	VICIntEnable  = (1 << 4);	// Enable Ttimer0 Interrupt
 }
