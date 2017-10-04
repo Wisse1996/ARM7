@@ -13,12 +13,13 @@ int value = 0;
 int k = 0;
 int value;
 int a[POINTS];
+// this is the order of the tones that must be played.
+int musicOrder[] = {3,2,0,1,4,4,4,4,4,4,4,4,4,};
 
-
-#define nf 13            // number of bits of fractional part 
+#define nf 13            // number of bits of fractional part
 //int a1 = (int) (1.987975 * (1 << nf) + 0.5);  // a1=16069 (real value=16069/2^13=1.96157)
 int a2 = 1 << nf;         // a2=8192  (real value=8192/2^13=1)
-
+                                                                     // 0,  1,  2,  3,  4
 double tones[POINTS] = {1.9759, 1.98928, 1.98485, 1.98092, 1.99149}; // F4, E4, G4, A4, D4
 // a--g--f--e--d--d--d--d--d---d-d
 
@@ -33,7 +34,7 @@ int CalculateOutput(int a1) {
 }
 
 void initArray() {
-	for (int i = 0; i < 21; i++) {
+	for (int i = 0; i < 5; i++) {
 		a[i] = (int) (tones[i] * (1 << nf) + 0.5);
 	}
 }
@@ -74,7 +75,7 @@ int main(void) {
 
 		if (sineFlag) {
 			sineFlag = false;
-			value = CalculateOutput(a[k]);
+			value = CalculateOutput(a[musicOrder[k]]);
 			value = value >> 6;
 			value += 1000;
 			value /= 2;

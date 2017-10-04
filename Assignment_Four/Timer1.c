@@ -5,9 +5,9 @@ extern int k;
 
 /************** interrupt service routine timer1 ******************/
 __irq void T1_ISR (void) {
-  
+
   k++;
-  if (k == POINTS) k = 0;
+  if (k == 11) k = 0;
 	// interrupt code
 	T1IR        = 1;	// Clear interrupt flag
 	VICVectAddr = 0;	// Update interrupt priority hardware
