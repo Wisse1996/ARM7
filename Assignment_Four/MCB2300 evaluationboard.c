@@ -8,7 +8,10 @@ void initEvaluationBoard(void) {
 	//LEDS = 0x00; // on reset all leds are off
 //	BUZZER = 0x00; // BUZZER off at start
 
+
 	// init the lcd
 	lcd_init();
+	//PINMODE1 |= (2 << 20);
+	PINSEL1 |= (2 << 20);
 }
 
