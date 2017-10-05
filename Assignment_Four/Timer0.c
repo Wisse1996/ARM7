@@ -2,10 +2,10 @@
 #include <stdbool.h> // bool C99
 
 
-
 /*** global ***/
-extern int value;
 extern bool sineFlag;
+
+
 /************** interrupt service routine timer0 ******************/
 __irq void T0_ISR (void) {
 
