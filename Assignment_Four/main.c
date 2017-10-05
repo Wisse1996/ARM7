@@ -11,12 +11,8 @@
 #define G 2
 
 // play with these numbers to get the right timing
-#define TIME 1197505 
-#define PAUSE 1850000
-
-#define ONE ((TIME * 1) - 1) //   1500000 - 1 // duration of one time unit
-#define TWO ((TIME * 2) - 1) // 3000000 - 1 // duration of two time units
-#define THREE ((TIME * 3) - 1) // 4500000 - 1 // duration of three time units
+#define MSEC 12000 // 1 milisecond timer1
+// #define PAUSE (58 * MSEC)
 
 #define nf 13            // number of bits of fractional part
 
@@ -30,9 +26,15 @@ bool resetY = false;
 bool enabled = true;
 int freq[TONES];
 int musicOrder[NOTES] = {A, G, F, E, D, D, D, D, D, D, D};
-int time[NOTES] = {TWO, TWO, TWO, TWO, TWO,
-                   TWO, TWO, TWO, THREE, ONE, ONE
+int time[NOTES] = {MSEC * 319, MSEC * 322, MSEC * 320, MSEC * 300, MSEC * 311,
+                   MSEC * 278, MSEC * 258, MSEC * 226, MSEC * 440, MSEC * 146,
+                   MSEC * 166
                   };
+
+int pause[NOTES] = {MSEC * 58, MSEC * 33, MSEC * 47, MSEC * 49, MSEC * 58,
+                    MSEC * 72, MSEC * 108, MSEC * 120, MSEC * 37, MSEC * 99,
+                    MSEC * 97
+                   };
 char notes[NOTES] = {'A', 'G', 'F', 'E', 'D', 'D', 'D', 'D', 'D', 'D', 'D'};
 
 //int a1 = (int) (1.987975 * (1 << nf) + 0.5);  // a1=16069 (real value=16069/2^13=1.96157)
@@ -74,8 +76,8 @@ int main(void) {
 
 	bool delay = true;
 	bool toggle = true;
-  
-  int k = 0;
+
+	int k = 0;
 
 	// print the first note already
 	set_cursor(0, 0);
@@ -89,7 +91,7 @@ int main(void) {
 			timeFlag = false;
 			if (delay) {
 				T0TCR = 0;
-				T1MR0 = PAUSE;
+				T1MR0 = pause[k];
 				delay = false;
 			} else {
 				delay = true;
