@@ -6,9 +6,12 @@ void initEvaluationBoard(void) {
 	//PINMODE4 = 0x0020AAAA; // LEDS
 	SCS |= (1 << 0); // enable fast GPIO !!!
 	//LEDS = 0x00; // on reset all leds are off
-//	BUZZER = 0x00; // BUZZER off at start
-
+	//BUZZER = 0x00; // BUZZER off at start
 	// init the lcd
 	lcd_init();
+	//PINMODE1 |= (2 << 20);
+
+	// select the DAC (Aout)
+	PINSEL1 |= (2 << 20);
 }
 
